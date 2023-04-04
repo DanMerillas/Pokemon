@@ -1,7 +1,9 @@
 
 import './App.css';
-import ReactCardCarousel from 'react-card-carousel';
+
 import { useEffect, useState } from 'react';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+import { Carousel } from 'react-responsive-carousel';
 import { Card } from './components/Card';
 
 
@@ -11,6 +13,7 @@ function App() {
 
   const [randomValue, setRandomValue] = useState<any>([]);
   const numCards = 10
+  const apiUrl = 'https://pokeapi.co/api/v2/pokemon'
 
   const [query, setQuery] = useState('');
 
@@ -19,12 +22,12 @@ function App() {
   }
 
   const handleSearchClick = () => {
-    setRandomValue([<Card key={1} pokemonUrl={`https://pokeapi.co/api/v2/pokemon/${query}`} />])
+    setRandomValue([<Card pokemonUrl={`${apiUrl}/${query}`} />])
   }
 
   const handleKeyDown = (event:any) => {
     if (event.key === "Enter") {
-      setRandomValue([<Card key={1} pokemonUrl={`https://pokeapi.co/api/v2/pokemon/${query}`} />])
+      setRandomValue([<Card pokemonUrl={`${apiUrl}/${query}`} />])
     }
   };
 
@@ -32,20 +35,23 @@ function App() {
     const fetchData = async () => {
 
       let randomValues: any = []
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=2000`);
+      const response = await fetch(`${apiUrl}?offset=0&limit=2000`);
       const jsonData = await response.json();
 
 
       for (let i = 0; i < numCards; i++) {
         const value = Math.floor(Math.random() * (jsonData.results.length)) + 1
 
-        randomValues.push(<Card key={value} pokemonUrl={jsonData.results[value].url} />)
+        randomValues.push(<Card pokemonUrl={jsonData.results[value].url} />)
       }
       setRandomValue(randomValues)
     };
 
     fetchData();
   }, []);
+
+  
+
 
   return (
     <>
@@ -60,17 +66,17 @@ function App() {
         />
         <button onClick={handleSearchClick}>Buscar</button>
       </div>
-      <div className='flex'>
+      
 
-        <ReactCardCarousel autoplay={false} >
+        <Carousel>
           {randomValue ?
             randomValue
             :
             ''
           }
 
-        </ReactCardCarousel>
-      </div>
+        </Carousel>
+
     </>
   );
 }
