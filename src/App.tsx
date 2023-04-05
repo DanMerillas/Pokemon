@@ -6,6 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { Card } from './components/Card';
 import { ReactTable } from './components/ReactTable';
+import { Button } from '@mui/material';
 
 
 
@@ -29,7 +30,7 @@ function App() {
     <>
       <h1 className='title'>Pokedesk de Aarón</h1>
       <div className='searchbox'>
-        <ReactTable data={data} filterFunction={setRandomValue} allFunction={pintarPokemonsAleatoriamente}/>
+        <ReactTable data={data} filterFunction={setRandomValue} allFunction={pintarPokemonsAleatoriamente} />
       </div>
       <Carousel>
         {randomValue ?
@@ -39,7 +40,9 @@ function App() {
         }
 
       </Carousel>
-
+      <div className='divButton'>
+      <Button className='myButton' onClick={pintarPokemonsAleatoriamente}>Actualizar</Button>
+      </div>
     </>
   );
 
