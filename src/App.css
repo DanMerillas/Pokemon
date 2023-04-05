@@ -1,6 +1,7 @@
 .title{
   
-  padding-top: 10px;
+ margin-top: 10px;
+ margin-bottom: 10px;
   font-size: 28px;
   text-align: center;
   color: white
@@ -29,10 +30,13 @@ html {
 
 body {
   font-family: 'Kumbh Sans', sans-serif;
-  background-color: var(--dark-cyan);
-  background-image: url("./images/bg-pattern-top.svg"), url("./images/bg-pattern-bottom.svg");
-  background-repeat: no-repeat, no-repeat;
-  background-position: right 50vw bottom 50vh, left 50vw top 50vh;
+  background-color: black;
+  font-family: 'Kumbh Sans', sans-serif;
+  /* background-image: url("./images/bg-pattern-top.svg"), url("./images/bg-pattern-bottom.svg"); */
+  background-image: url("./images/pokemon-fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
 div.tablaReact{
@@ -164,10 +168,15 @@ div.tablaReact{
 
 .search{
   background-color: white;
+  width: 80%;
 }
 
-.searchbox{
+.searchbox,.divMaestro{
   text-align: center;
+}
+
+.divMaestro{
+  padding-top: 10px;
 }
 
 [name="select-all-rows"]{
@@ -200,4 +209,9 @@ Button.myButton {
 .myButton:active {
 	position:relative;
 	top:1px;
+}
+
+.maestro{
+  width: 10vh;
+  
 }

@@ -71,7 +71,7 @@ export function ReactTable(props: { data: any; filterFunction: any; allFunction:
                 onChange={(e: any) => setFilterText(e.target.value)}
             />
             <DataTable className='tablaReact' columns={columns} data={filteredItems} pagination selectableRows onSelectedRowsChange={handleRowSelected} selectableRowsHighlight={true}
-            paginationPerPage={5}
+            paginationPerPage={10}
             paginationRowsPerPageOptions={[5,10, 25, 50, 100]}
             />
         </>
