@@ -68,7 +68,7 @@ function App() {
           <Button className='myButton' onClick={() => setSearch(true)}>Buscar</Button>
         </div>}
 
-      <Carousel infiniteLoop={true} onChange={carouselChange} selectedItem={carouselSelectedItem} transitionTime={600}>
+      <Carousel infiniteLoop={true} onChange={carouselChange} selectedItem={carouselSelectedItem} transitionTime={350}>
         {randomValue ?
           randomValue
           :
