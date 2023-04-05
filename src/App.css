@@ -35,6 +35,11 @@ body {
   background-position: right 50vw bottom 50vh, left 50vw top 50vh;
 }
 
+div.tablaReact{
+  margin: 20px 10px 50px 10px;
+  width: auto;
+}
+
 .flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -45,12 +50,14 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100vh;
+ 
 }
 
 .card {
   background-color: white;
   width: 326px;
+  margin-top: 30px;
+  margin-left: 41%;
   border-radius: 16px;
   overflow: hidden;
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
@@ -135,6 +142,7 @@ body {
 
 @media only screen and (max-width: 480px) {
   .search-box {margin-left: 13%;}
+  .card{margin-left: 10%;}
 }
 
 .search-box input[type="text"] {
@@ -152,4 +160,16 @@ body {
   font-size: 16px;
   cursor: pointer;
   margin-left: 10px;
+}
+
+.search{
+  background-color: white;
+}
+
+.searchbox{
+  text-align: center;
+}
+
+[name="select-all-rows"]{
+  display: none;
 }
