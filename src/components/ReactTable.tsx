@@ -7,7 +7,7 @@ import { Card } from './Card';
 
 
 
-export function ReactTable(props: { data: any; filterFunction: any; allFunction:any}) {
+export function ReactTable(props: { data: any; filterFunction: any; allFunction:any; favoritos:any; leerFavoritos:any}) {
     const [filterText1, setFilterText] = useState('');
     const [selectedRows, setSelectedRows] = useState([])
     const [filteredItems, setFilteredItems] = useState(props.data);
@@ -48,7 +48,7 @@ export function ReactTable(props: { data: any; filterFunction: any; allFunction:
     useEffect(() => {
 
         if(selectedRows && selectedRows.length > 0){
-            const filter = selectedRows.map((s: any) => <Card pokemonUrl={s.url} />)
+            const filter = selectedRows.map((s: any) => <Card key={s.url} pokemonUrl={s.url} leerFavoritos={props.leerFavoritos} favoritos={props.favoritos}/>)
             props.filterFunction(filter)
         }
         else{

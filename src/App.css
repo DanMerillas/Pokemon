@@ -144,10 +144,7 @@ div.tablaReact{
   padding: 0 10px;
 }
 
-@media only screen and (max-width: 480px) {
-  .search-box {margin-left: 13%;}
-  .card{margin-left: 10%;}
-}
+
 
 .search-box input[type="text"] {
   flex: 1;
@@ -214,4 +211,22 @@ Button.myButton {
 .maestro{
   width: 15vh;
   
+}
+
+.css-i4bv87-MuiSvgIcon-root.favoritos{
+  position: absolute;
+    color: #fffb00d6;
+    font-size: 57px;
+    right: 818px;
+    top: 23px;
+}
+
+.css-i4bv87-MuiSvgIcon-root.favoritos:hover {
+  color:grey;
+}
+
+@media only screen and (max-width: 480px) {
+  .search-box {margin-left: 13%;}
+  .card{margin-left: 10%;}
+  .css-i4bv87-MuiSvgIcon-root.favoritos{right: 56px;}
 }

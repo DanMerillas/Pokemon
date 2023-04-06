@@ -6,8 +6,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { Card } from './components/Card';
 import { ReactTable } from './components/ReactTable';
-import Aaron from './images/1680731380516.jpg'
 import { Button } from '@mui/material';
+import { obtenerDatos } from './services/db';
 
 
 
@@ -17,6 +17,8 @@ function App() {
   const [data, setData] = useState<any>([]);
   const [search, setSearch] = useState<boolean>(false);
   const [carouselSelectedItem, setcarouselSelectedItem] = useState<number>(0);
+  const [favoritos, setFavoritos] = useState<any>([]);
+  const [verFavoritos, setVerFavoritos] = useState<boolean>(false);
 
   const numCards = 10
   const apiUrl = 'https://pokeapi.co/api/v2/pokemon'
@@ -24,7 +26,8 @@ function App() {
 
 
   useEffect(() => {
-    pintarPokemonsAleatoriamente();
+    leerFavoritos(pintarPokemonsAleatoriamente)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -37,24 +40,38 @@ function App() {
 
   }
 
+  const leerFavoritos = (callback?: any) => {
+    obtenerDatos("FavoritosPokemon", "URL","URL").then((results) => {
+      setFavoritos(results.data)
+      if (callback)
+        callback()
+    })
+  }
   const carouselChange = (index: number) => {
 
-    if (index === 0 && carouselSelectedItem === randomValue.length - 1) {
+    if (!verFavoritos && index === 0 && carouselSelectedItem === randomValue.length - 1) {
       pintarPokemonsAleatoriamente()
-
     }
     else {
       setcarouselSelectedItem(index)
-
     }
 
   }
 
+  const pintarFavoritos=()=>{
+    setVerFavoritos(true)
+    let randomValues = []
+    for (let i = 0; i < favoritos.length; i++) {
+            randomValues.push(<Card key={favoritos[i].URL} pokemonUrl={favoritos[i].URL} leerFavoritos={leerFavoritos} favoritos={favoritos}/>);
+    }
+    setRandomValue(randomValues);
+    setcarouselSelectedItem(0)
+  }
 
   return (
     <>
       <div className='divMaestro'>
-        <img className='maestro' src={Aaron} alt='maestro pokemon' />
+        <img className='maestro' src={process.env.REACT_APP_MAESTRO} alt='maestro pokemon' />
       </div>
       <h1 className='title'>Pokedex de Aarón</h1>
       {search ?
@@ -63,9 +80,12 @@ function App() {
           <div>
             <Button className='myButton' onClick={() => setSearch(false)}>Ocultar</Button>
           </div>
-          <ReactTable data={data} filterFunction={filterFunction} allFunction={pintarPokemonsAleatoriamente} />
+          <ReactTable data={data} filterFunction={filterFunction} allFunction={pintarPokemonsAleatoriamente} leerFavoritos={leerFavoritos} favoritos={favoritos}/>
         </div> : <div className='searchbox'>
-          <Button className='myButton' onClick={() => setSearch(true)}>Buscar</Button>
+          <Button className='myButton' onClick={() => {
+            setVerFavoritos(false)
+            setSearch(true)}
+            }>Buscar</Button><Button className='myButton' onClick={() => pintarFavoritos()}>Favoritos</Button>
         </div>}
 
       <Carousel infiniteLoop={true} onChange={carouselChange} selectedItem={carouselSelectedItem} transitionTime={350}>
@@ -91,7 +111,7 @@ function App() {
       for (let i = 0; i < numCards; i++) {
         const value = Math.floor(Math.random() * (jsonData.results.length)) + 1;
 
-        randomValues.push(<Card pokemonUrl={jsonData.results[value].url} />);
+        randomValues.push(<Card key={jsonData.results[value].url} pokemonUrl={jsonData.results[value].url} leerFavoritos={leerFavoritos} favoritos={favoritos}/>);
       }
       setRandomValue(randomValues);
       setData(jsonData.results);
