@@ -213,7 +213,7 @@ Button.myButton {
   
 }
 
-.css-i4bv87-MuiSvgIcon-root.favoritos{
+.MuiSvgIcon-root.favoritos{
   position: absolute;
     color: #fffb00d6;
     font-size: 57px;
@@ -221,12 +221,12 @@ Button.myButton {
     top: 23px;
 }
 
-.css-i4bv87-MuiSvgIcon-root.favoritos:hover {
+.MuiSvgIcon-root.favoritos:hover {
   color:grey;
 }
 
-@media only screen and (max-width: 396px) {
+@media only screen and (max-width: 450px) {
   .search-box {margin-left: 13%;}
   .card{margin-left: 10%;}
-  .css-i4bv87-MuiSvgIcon-root.favoritos{right: 56px;}
+  .MuiSvgIcon-root.favoritos{right: 56px;}
 }

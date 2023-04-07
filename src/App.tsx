@@ -82,12 +82,16 @@ function App() {
 
         <div className='searchbox'>
           <div>
-            <Button className='myButton' onClick={() => setSearch(false)}>Ocultar</Button>
+            <Button className='myButton' onClick={() => {
+              setSearch(false)
+              setVerFavoritos(false)
+              }
+              }>Ocultar</Button>
           </div>
           <ReactTable data={data} filterFunction={filterFunction} allFunction={pintarPokemonsAleatoriamente} leerFavoritos={leerFavoritos} favoritos={favoritos} />
         </div> : <div className='searchbox'>
           <Button className='myButton' onClick={() => {
-            setVerFavoritos(false)
+            setVerFavoritos(true)
             setSearch(true)
           }
           }>Buscar</Button><Button className='myButton' onClick={() => pintarFavoritos()}>Favoritos</Button>
