@@ -225,7 +225,7 @@ Button.myButton {
   color:grey;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 396px) {
   .search-box {margin-left: 13%;}
   .card{margin-left: 10%;}
   .css-i4bv87-MuiSvgIcon-root.favoritos{right: 56px;}
