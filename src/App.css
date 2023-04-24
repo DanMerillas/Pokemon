@@ -225,6 +225,12 @@ Button.myButton {
   color:grey;
 }
 
+.carousel p.carousel-status{
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
 @media only screen and (max-width: 450px) {
   .search-box {margin-left: 13%;}
   .card{margin-left: 10%;}

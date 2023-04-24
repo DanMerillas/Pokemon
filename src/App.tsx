@@ -97,7 +97,7 @@ function App() {
           }>Buscar</Button><Button className='myButton' onClick={() => pintarFavoritos()}>Favoritos</Button>
         </div>}
 
-      <Carousel infiniteLoop={true} onChange={carouselChange} selectedItem={carouselSelectedItem} transitionTime={350}>
+      <Carousel infiniteLoop={true} onChange={carouselChange} selectedItem={carouselSelectedItem} transitionTime={350} showIndicators={false}>
         {randomValue ?
           randomValue
           :
